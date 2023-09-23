@@ -1,14 +1,14 @@
 [features]
 seeds = false
 skip-lint = false
-[programs.localnet]
+[programs.devnet]
 anchor_mint_nft = "Fj1NHpcEKdsJr76SrTXJdJF9P37hq3Dz3QiyaiC95nak"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+cluster = "devnet"
 wallet = "/home/renzo/.config/solana/id.json"
 
 [scripts]
