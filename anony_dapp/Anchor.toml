@@ -2,13 +2,13 @@
 seeds = false
 skip-lint = false
 [programs.localnet]
-pda_demo = "46bs36nRFTEdHoLaywjPgx7599WqbXeTRiJLTomZwVGT"
+anony_dapp = "4mDpa7Yt2edjAvoZ7Ji5aga5LK7uzUGLa7hVhZAFWwtV"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "localnet"
 wallet = "/home/renzo/.config/solana/id.json"
 
 [scripts]
