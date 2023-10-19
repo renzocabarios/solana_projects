@@ -1,10 +1,7 @@
 import { AnchorProvider, Program } from "@coral-xyz/anchor";
 
 export interface IWeb3Store {
-  provider: null | AnchorProvider;
   wallet: null | string;
-  posts: any[];
-  setProvider: any;
   setWallet: any;
 }
 
