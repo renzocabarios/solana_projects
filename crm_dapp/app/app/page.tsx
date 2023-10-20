@@ -1,6 +1,21 @@
+"use client"
 import { Navbar, CustomerCard } from "@/components";
+import { getAllCustomers } from "@/fetch";
+import { useSolana } from "@/hooks";
+import { useEffect } from "react";
 
 export default function Home() {
+  const { program } = useSolana()
+
+  useEffect(() => {
+
+    const start = async () => {
+      const data = await getAllCustomers(program)
+      alert(data)
+    }
+    start();
+  }, [])
+
   return (
     <main>
       <Navbar />

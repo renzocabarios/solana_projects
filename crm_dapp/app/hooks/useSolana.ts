@@ -15,7 +15,6 @@ const PROGRAM: PublicKey = new PublicKey(
     "En6BofD5Pdmv3anMUKuL7zhbaYd7urCvkeqFa11Z9SFd"
 );
 
-
 const useSolana = () => {
     const [connection, setConnection] = useState<any>(CONNECTION);
     const [programId, setProgramId] = useState<any>(PROGRAM);

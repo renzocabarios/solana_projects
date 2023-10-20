@@ -5,6 +5,11 @@ export interface IWeb3Store {
   setWallet: any;
 }
 
+export interface ICustomerStore {
+  customer: any[];
+  setCustomer: any;
+}
+
 export type IProgram = Program<CrmDapp>;
 
 export type CrmDapp = {
