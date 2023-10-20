@@ -5,8 +5,9 @@ function Button({ onClick, type, children, outlined, light }: any) {
   return (
     <>
       <button
-        className={`${style.button} ${outlined ? style.outlined : style.filled
-          } ${light ? style.light : style.default}`}
+        className={`${style.button} ${
+          outlined ? style.outlined : style.filled
+        } ${light ? style.light : style.default}`}
         onClick={onClick}
         type={type ?? "button"}
       >
