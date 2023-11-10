@@ -1,9 +1,9 @@
 use anchor_lang::prelude::*;
 
-declare_id!("LwLEiVLfLitKwkTSo6rScZspxTF1PfeEX8HBp71LCHE");
+declare_id!("4EZmVGSvLdh7J25EftVKE4rs1SwmGqnCkn4DdmbQF5oJ");
 
 #[program]
-pub mod node_string_saver {
+pub mod string_saver_dapp {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>, data: String) -> Result<()> {
@@ -13,6 +13,7 @@ pub mod node_string_saver {
         Ok(())
     }
 }
+
 #[derive(Accounts)]
 pub struct Initialize<'info> {
     #[account(init, payer=signer, space=264)]
