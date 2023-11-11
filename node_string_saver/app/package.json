@@ -4,18 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx ts-node index.ts"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx tsc && node dist/app/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@coral-xyz/anchor": "^0.29.0",
-    "@solana/web3.js": "^1.87.3",
-    "@types/node": "^20.8.10",
-    "bs58": "^5.0.0",
-    "dotenv": "^16.3.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "@solana/web3.js": "^1.87.6",
+    "bs58": "^5.0.0"
   }
 }
