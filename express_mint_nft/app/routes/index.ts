@@ -3,8 +3,8 @@ import { Express } from "express";
 
 export const routes = [
   {
-    url: "/api/v1/solana",
-    route: V1.solanaRoute,
+    url: "/api/v1/upload",
+    route: V1.uploadRoute,
   },
 ];
 

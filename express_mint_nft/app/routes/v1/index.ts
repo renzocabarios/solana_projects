@@ -1,3 +1,3 @@
-import solanaRoute from "./solana/route";
+import uploadRoute from "./upload/route";
 
-export default { solanaRoute };
+export default { uploadRoute };
