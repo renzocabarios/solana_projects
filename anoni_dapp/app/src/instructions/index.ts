@@ -4,13 +4,12 @@ import { PublicKey } from "@solana/web3.js";
 export async function createPost(
   program: Program<any>,
   signer: PublicKey,
-  title: string,
-  content: string
+  payload: any,
 ): Promise<void> {
   const keypair = web3.Keypair.generate();
   try {
     await program.methods
-      .createPost(title, content)
+      .createPost(payload.title, payload.content)
       .accounts({
         post: keypair.publicKey,
         signer,
