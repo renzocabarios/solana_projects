@@ -1,0 +1,25 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx ts-node index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@metaplex-foundation/mpl-candy-machine": "^6.0.0-alpha.20",
+    "@metaplex-foundation/mpl-token-metadata": "^3.0.0-alpha.27",
+    "@metaplex-foundation/mpl-toolbox": "^0.9.1",
+    "@metaplex-foundation/umi": "^0.8.10",
+    "@metaplex-foundation/umi-bundle-defaults": "^0.8.10",
+    "@metaplex-foundation/umi-signer-wallet-adapters": "^0.8.10",
+    "@types/node": "^20.10.3",
+    "bs58": "^5.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  }
+}

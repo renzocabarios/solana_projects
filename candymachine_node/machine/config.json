@@ -1,0 +1,30 @@
+{
+  "tokenStandard": "nft",
+  "number": 10,
+  "symbol": "BCC",
+  "sellerFeeBasisPoints": 0,
+  "isMutable": true,
+  "isSequential": false,
+  "creators": [
+    {
+      "address": "6wG3XFBjjeoi8Vgdrt6p65tS6nBKgh2PBGV9gFjnPj6M",
+      "share": 100
+    }
+  ],
+  "uploadMethod": "bundlr",
+  "ruleSet": null,
+  "awsConfig": null,
+  "sdriveApiKey": null,
+  "nftStorageAuthToken": null,
+  "shdwStorageAccount": null,
+  "pinataConfig": null,
+  "hiddenSettings": null,
+  "guards": {
+    "default": {
+      "startDate": {
+        "date": "2022-10-23T20:00:00Z"
+      }
+    }
+  },
+  "maxEditionSupply": null
+}
