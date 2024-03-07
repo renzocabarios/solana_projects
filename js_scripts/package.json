@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx ts-node index.ts",
     "get_balance": "npx ts-node getBalance.ts",
+    "generate_keypair": "npx ts-node generateKeypair.ts",
     "airdrop": "npx ts-node airdrop.ts"
   },
   "keywords": [],

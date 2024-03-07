@@ -1,5 +1,6 @@
 import {
   BlockhashWithExpiryBlockHeight,
+  Keypair,
   LAMPORTS_PER_SOL,
   PublicKey,
   RpcResponseAndContext,
@@ -49,4 +50,8 @@ export async function confirmTransaction(
 
 export async function getLatestBlockhash(): Promise<BlockhashWithExpiryBlockHeight> {
   return await CONNECTION.getLatestBlockhash();
+}
+
+export function generateKeypair(): Keypair {
+  return Keypair.generate();
 }
