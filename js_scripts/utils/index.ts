@@ -27,6 +27,12 @@ export async function transferSOL(
     })
   );
 
+  const estimatedFee = await getEstimatedFee(
+    transaction,
+    payerKeypair.publicKey
+  );
+  console.log("Estimated SOL Fee", estimatedFee);
+
   return await sendAndConfirmTransaction(CONNECTION, transaction, [
     payerKeypair,
   ]);
@@ -82,4 +88,17 @@ export async function getLatestBlockhash(): Promise<BlockhashWithExpiryBlockHeig
 
 export function generateKeypair(): Keypair {
   return Keypair.generate();
+}
+
+export async function getEstimatedFee(
+  transaction: Transaction,
+  feepayer: PublicKey
+): Promise<number | null> {
+  const { blockhash, lastValidBlockHeight } = await getLatestBlockhash();
+  transaction.recentBlockhash = blockhash;
+  transaction.lastValidBlockHeight = lastValidBlockHeight;
+  transaction.feePayer = feepayer;
+  return LamportstoSOL(
+    Number((await transaction.getEstimatedFee(CONNECTION)) ?? 0)
+  );
 }
