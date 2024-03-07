@@ -8,7 +8,8 @@
     "start": "npx ts-node index.ts",
     "get_balance": "npx ts-node getBalance.ts",
     "generate_keypair": "npx ts-node generateKeypair.ts",
-    "airdrop": "npx ts-node airdrop.ts"
+    "airdrop": "npx ts-node airdrop.ts",
+    "transfer_sol": "npx ts-node transferSOL.ts"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
   "dependencies": {
     "@solana/web3.js": "^1.78.4",
     "@types/node": "^20.5.9",
+    "bs58": "^5.0.0",
     "dotenv": "^16.4.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"

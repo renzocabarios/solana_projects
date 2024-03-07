@@ -5,8 +5,36 @@ import {
   PublicKey,
   RpcResponseAndContext,
   SignatureResult,
+  SystemProgram,
+  Transaction,
+  TransactionSignature,
+  sendAndConfirmTransaction,
 } from "@solana/web3.js";
 import { CONNECTION } from "../config";
+import bs58 from "bs58";
+import { PAYER_PRIVATE_KEY } from "../env";
+
+export async function transferSOL(
+  to: PublicKey,
+  sol: number
+): Promise<TransactionSignature> {
+  const payerKeypair = getPayerKeypair();
+  const transaction = new Transaction().add(
+    SystemProgram.transfer({
+      fromPubkey: payerKeypair.publicKey,
+      toPubkey: to,
+      lamports: SOLtoLamports(sol),
+    })
+  );
+
+  return await sendAndConfirmTransaction(CONNECTION, transaction, [
+    payerKeypair,
+  ]);
+}
+
+export function getPayerKeypair(): Keypair {
+  return Keypair.fromSecretKey(bs58.decode(PAYER_PRIVATE_KEY));
+}
 
 export function SOLtoLamports(value: number): number {
   return value * LAMPORTS_PER_SOL;
