@@ -7,6 +7,7 @@ import {
   SignatureResult,
   SystemProgram,
   Transaction,
+  TransactionInstruction,
   TransactionSignature,
   sendAndConfirmTransaction,
 } from "@solana/web3.js";
@@ -14,17 +15,25 @@ import { CONNECTION } from "../config";
 import bs58 from "bs58";
 import { PAYER_PRIVATE_KEY } from "../env";
 
+export function systemProgramTransferInstruction(
+  fromPubkey: PublicKey,
+  toPubkey: PublicKey,
+  sol: number
+): TransactionInstruction {
+  return SystemProgram.transfer({
+    fromPubkey,
+    toPubkey,
+    lamports: SOLtoLamports(sol),
+  });
+}
+
 export async function transferSOL(
   to: PublicKey,
   sol: number
 ): Promise<TransactionSignature> {
   const payerKeypair = getPayerKeypair();
   const transaction = new Transaction().add(
-    SystemProgram.transfer({
-      fromPubkey: payerKeypair.publicKey,
-      toPubkey: to,
-      lamports: SOLtoLamports(sol),
-    })
+    systemProgramTransferInstruction(payerKeypair.publicKey, to, sol)
   );
 
   const estimatedFee = await getEstimatedFee(
