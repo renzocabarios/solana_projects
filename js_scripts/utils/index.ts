@@ -1,5 +1,6 @@
 import {
   BlockhashWithExpiryBlockHeight,
+  ConfirmOptions,
   Keypair,
   LAMPORTS_PER_SOL,
   PublicKey,
@@ -14,14 +15,49 @@ import {
 import { CONNECTION } from "../config";
 import bs58 from "bs58";
 import { PAYER_PRIVATE_KEY } from "../env";
+import {
+  MINT_SIZE,
+  TOKEN_PROGRAM_ID,
+  createInitializeMint2Instruction,
+  getMinimumBalanceForRentExemptMint,
+} from "@solana/spl-token";
+
+export async function getMinimumBalanceForRentExemption(
+  space: number
+): Promise<number> {
+  return await CONNECTION.getMinimumBalanceForRentExemption(space);
+}
+
+export async function createMintTransaction(
+  decimals: number,
+  keypair = Keypair.generate(),
+  programId = TOKEN_PROGRAM_ID
+): Promise<Transaction> {
+  const lamports = await getMinimumBalanceForRentExemptMint(CONNECTION);
+  return new Transaction().add(
+    SystemProgram.createAccount({
+      fromPubkey: getPayerKeypair().publicKey,
+      newAccountPubkey: keypair.publicKey,
+      lamports,
+      space: MINT_SIZE,
+      programId,
+    }),
+    createInitializeMint2Instruction(
+      keypair.publicKey,
+      decimals,
+      getPayerKeypair().publicKey,
+      getPayerKeypair().publicKey,
+      programId
+    )
+  );
+}
 
 export async function systemProgramCreateAccountInstruction(
   fromPubkey: PublicKey,
   newAccountPubkey: PublicKey,
   space: number
 ): Promise<TransactionInstruction> {
-  const rentExemptionAmount =
-    await CONNECTION.getMinimumBalanceForRentExemption(space);
+  const rentExemptionAmount = await getMinimumBalanceForRentExemption(space);
 
   return SystemProgram.createAccount({
     fromPubkey,

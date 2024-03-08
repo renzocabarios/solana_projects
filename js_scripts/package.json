@@ -9,12 +9,14 @@
     "generate_keypair": "npx ts-node generateKeypair.ts",
     "airdrop": "npx ts-node airdrop.ts",
     "transfer_sol": "npx ts-node transferSOL.ts",
-    "create_account": "npx ts-node createAccount.ts"
+    "create_account": "npx ts-node createAccount.ts",
+    "create_mint": "npx ts-node createMint.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@solana/spl-token": "^0.4.1",
     "@solana/web3.js": "^1.78.4",
     "@types/node": "^20.5.9",
     "bs58": "^5.0.0",
