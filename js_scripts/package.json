@@ -8,7 +8,8 @@
     "get_balance": "npx ts-node getBalance.ts",
     "generate_keypair": "npx ts-node generateKeypair.ts",
     "airdrop": "npx ts-node airdrop.ts",
-    "transfer_sol": "npx ts-node transferSOL.ts"
+    "transfer_sol": "npx ts-node transferSOL.ts",
+    "create_account": "npx ts-node createAccount.ts"
   },
   "keywords": [],
   "author": "",

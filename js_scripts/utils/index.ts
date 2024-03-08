@@ -15,6 +15,49 @@ import { CONNECTION } from "../config";
 import bs58 from "bs58";
 import { PAYER_PRIVATE_KEY } from "../env";
 
+export async function systemProgramCreateAccountInstruction(
+  fromPubkey: PublicKey,
+  newAccountPubkey: PublicKey,
+  space: number
+): Promise<TransactionInstruction> {
+  const rentExemptionAmount =
+    await CONNECTION.getMinimumBalanceForRentExemption(space);
+
+  return SystemProgram.createAccount({
+    fromPubkey,
+    newAccountPubkey,
+    lamports: rentExemptionAmount,
+    space,
+    programId: SystemProgram.programId,
+  });
+}
+
+export async function createAccount(
+  newAccountKeypair: Keypair,
+  space: number
+): Promise<TransactionSignature> {
+  const payerKeypair = getPayerKeypair();
+  const transaction = new Transaction().add(
+    await systemProgramCreateAccountInstruction(
+      payerKeypair.publicKey,
+      newAccountKeypair.publicKey,
+      space
+    )
+  );
+
+  const estimatedFee = await getEstimatedFee(
+    transaction,
+    payerKeypair.publicKey
+  );
+
+  console.log("Estimated SOL Fee", estimatedFee);
+
+  return await sendAndConfirmTransaction(CONNECTION, transaction, [
+    payerKeypair,
+    newAccountKeypair,
+  ]);
+}
+
 export function systemProgramTransferInstruction(
   fromPubkey: PublicKey,
   toPubkey: PublicKey,
