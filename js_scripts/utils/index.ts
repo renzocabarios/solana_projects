@@ -31,23 +31,28 @@ import {
   getAssociatedTokenAddressSync,
   getMinimumBalanceForRentExemptMint,
 } from "@solana/spl-token";
-import { getSigners } from "@solana/spl-token/src/actions/internal";
 
-export function mintToInstruction(
-  mint: PublicKey,
-  destination: PublicKey,
-  amount: number | bigint
-): TransactionInstruction {
-  const [authorityPublicKey, signers] = getSigners(getPayerKeypair(), []);
-  return createMintToInstruction(
-    mint,
-    destination,
-    authorityPublicKey,
-    amount,
-    [],
-    TOKEN_PROGRAM_ID
-  );
+export async function generateAccountWithSeed(base: PublicKey, seed: string) {
+  return (
+    await PublicKey.createWithSeed(base, seed, SystemProgram.programId)
+  ).toBase58();
 }
+
+// export function mintToInstruction(
+//   mint: PublicKey,
+//   destination: PublicKey,
+//   amount: number | bigint
+// ): TransactionInstruction {
+//   // const [authorityPublicKey, signers] = getSigners(getPayerKeypair(), []);
+//   return createMintToInstruction(
+//     mint,
+//     destination,
+//     authorityPublicKey,
+//     amount,
+//     [],
+//     TOKEN_PROGRAM_ID
+//   );
+// }
 
 export async function getAssociatedTokenAccount(
   mint: PublicKey,
