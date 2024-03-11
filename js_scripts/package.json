@@ -10,7 +10,8 @@
     "airdrop": "npx ts-node airdrop.ts",
     "transfer_sol": "npx ts-node transferSOL.ts",
     "create_account": "npx ts-node createAccount.ts",
-    "create_mint": "npx ts-node createMint.ts"
+    "create_mint": "npx ts-node createMint.ts",
+    "mint_to_ata": "npx ts-node mintToAta.ts"
   },
   "keywords": [],
   "author": "",

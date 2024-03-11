@@ -1,6 +1,6 @@
 import {
   BlockhashWithExpiryBlockHeight,
-  ConfirmOptions,
+  Commitment,
   Keypair,
   LAMPORTS_PER_SOL,
   PublicKey,
@@ -16,11 +16,110 @@ import { CONNECTION } from "../config";
 import bs58 from "bs58";
 import { PAYER_PRIVATE_KEY } from "../env";
 import {
+  ASSOCIATED_TOKEN_PROGRAM_ID,
+  Account,
   MINT_SIZE,
   TOKEN_PROGRAM_ID,
+  TokenAccountNotFoundError,
+  TokenInvalidAccountOwnerError,
+  TokenInvalidMintError,
+  TokenInvalidOwnerError,
+  createAssociatedTokenAccountInstruction,
   createInitializeMint2Instruction,
+  createMintToInstruction,
+  getAccount,
+  getAssociatedTokenAddressSync,
   getMinimumBalanceForRentExemptMint,
 } from "@solana/spl-token";
+import { getSigners } from "@solana/spl-token/src/actions/internal";
+
+export function mintToInstruction(
+  mint: PublicKey,
+  destination: PublicKey,
+  amount: number | bigint
+): TransactionInstruction {
+  const [authorityPublicKey, signers] = getSigners(getPayerKeypair(), []);
+  return createMintToInstruction(
+    mint,
+    destination,
+    authorityPublicKey,
+    amount,
+    [],
+    TOKEN_PROGRAM_ID
+  );
+}
+
+export async function getAssociatedTokenAccount(
+  mint: PublicKey,
+  allowOwnerOffCurve = false,
+  commitment?: Commitment
+): Promise<Account> {
+  const associatedToken = getAssociatedTokenAddressSync(
+    mint,
+    getPayerKeypair().publicKey,
+    allowOwnerOffCurve,
+    TOKEN_PROGRAM_ID,
+    ASSOCIATED_TOKEN_PROGRAM_ID
+  );
+
+  return await getAccount(
+    CONNECTION,
+    associatedToken,
+    commitment,
+    TOKEN_PROGRAM_ID
+  );
+}
+
+export async function getAssociatedTokenAccountOrInstruction(
+  mint: PublicKey,
+  allowOwnerOffCurve = false,
+  commitment?: Commitment
+): Promise<Account | TransactionInstruction> {
+  let err: unknown;
+
+  const associatedToken = getAssociatedTokenAddressSync(
+    mint,
+    getPayerKeypair().publicKey,
+    allowOwnerOffCurve,
+    TOKEN_PROGRAM_ID,
+    ASSOCIATED_TOKEN_PROGRAM_ID
+  );
+
+  try {
+    const account = await getAccount(
+      CONNECTION,
+      associatedToken,
+      commitment,
+      TOKEN_PROGRAM_ID
+    );
+
+    if (!account.mint.equals(mint)) throw new TokenInvalidMintError();
+    if (!account.owner.equals(getPayerKeypair().publicKey))
+      throw new TokenInvalidOwnerError();
+  } catch (error: unknown) {
+    err = error;
+  }
+
+  const hasInvalidATA =
+    err instanceof TokenAccountNotFoundError ||
+    err instanceof TokenInvalidAccountOwnerError;
+
+  return hasInvalidATA
+    ? createAssociatedTokenAccountInstruction(
+        getPayerKeypair().publicKey,
+        associatedToken,
+        getPayerKeypair().publicKey,
+        mint,
+        TOKEN_PROGRAM_ID,
+        ASSOCIATED_TOKEN_PROGRAM_ID
+      )
+    : await getAccount(
+        CONNECTION,
+        associatedToken,
+        commitment,
+        TOKEN_PROGRAM_ID
+      );
+}
 
 export async function getMinimumBalanceForRentExemption(
   space: number
