@@ -12,7 +12,8 @@
     "create_account": "ts-node createAccount.ts",
     "create_mint": "ts-node createMint.ts",
     "generate_account_with_seed": "ts-node generateAccountWithSeed.ts",
-    "mint_to_ata": "ts-node mintToAta.ts"
+    "mint_to_ata": "ts-node mintToAta.ts",
+    "create_account_with_seed": "ts-node createAccountWithSeed.ts"
   },
   "keywords": [],
   "author": "",

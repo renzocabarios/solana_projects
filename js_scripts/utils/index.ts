@@ -32,6 +32,23 @@ import {
   getMinimumBalanceForRentExemptMint,
 } from "@solana/spl-token";
 
+export function createAccountWithSeedInstruction(
+  base: PublicKey,
+  derived: PublicKey,
+  seed: string
+) {
+  const payerKeypair = getPayerKeypair();
+  return SystemProgram.createAccountWithSeed({
+    fromPubkey: payerKeypair.publicKey,
+    newAccountPubkey: derived,
+    basePubkey: base,
+    seed,
+    lamports: 1e8,
+    space: 0,
+    programId: SystemProgram.programId,
+  });
+}
+
 export async function generateAccountWithSeed(base: PublicKey, seed: string) {
   return (
     await PublicKey.createWithSeed(base, seed, SystemProgram.programId)
