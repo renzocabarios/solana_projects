@@ -1,11 +1,14 @@
 import {
   BlockhashWithExpiryBlockHeight,
   Commitment,
+  ConfirmOptions,
+  Connection,
   Keypair,
   LAMPORTS_PER_SOL,
   PublicKey,
   RpcResponseAndContext,
   SignatureResult,
+  Signer,
   SystemProgram,
   Transaction,
   TransactionInstruction,
@@ -31,6 +34,23 @@ import {
   getAssociatedTokenAddressSync,
   getMinimumBalanceForRentExemptMint,
 } from "@solana/spl-token";
+
+export function getATA(mint: PublicKey) {
+  return getAssociatedTokenAddressSync(mint, getPayerKeypair().publicKey);
+}
+
+export function mintToInstruction(
+  mint: PublicKey,
+  destination: PublicKey,
+  amount: number | bigint
+): TransactionInstruction {
+  return createMintToInstruction(
+    mint,
+    destination,
+    getPayerKeypair().publicKey,
+    amount
+  );
+}
 
 export function createAccountWithSeedInstruction(
   base: PublicKey,
@@ -154,6 +174,13 @@ export async function createMintTransaction(
   keypair = Keypair.generate(),
   programId = TOKEN_PROGRAM_ID
 ): Promise<Transaction> {
+  const associatedToken = getAssociatedTokenAddressSync(
+    keypair.publicKey,
+    getPayerKeypair().publicKey,
+    false,
+    TOKEN_PROGRAM_ID,
+    ASSOCIATED_TOKEN_PROGRAM_ID
+  );
   const lamports = await getMinimumBalanceForRentExemptMint(CONNECTION);
   return new Transaction().add(
     SystemProgram.createAccount({
@@ -169,6 +196,15 @@ export async function createMintTransaction(
       getPayerKeypair().publicKey,
       getPayerKeypair().publicKey,
       programId
+    ),
+    // Create ATA
+    createAssociatedTokenAccountInstruction(
+      getPayerKeypair().publicKey,
+      associatedToken,
+      getPayerKeypair().publicKey,
+      keypair.publicKey,
+      TOKEN_PROGRAM_ID,
+      ASSOCIATED_TOKEN_PROGRAM_ID
     )
   );
 }

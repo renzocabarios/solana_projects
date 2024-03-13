@@ -13,6 +13,7 @@
     "create_mint": "ts-node createMint.ts",
     "generate_account_with_seed": "ts-node generateAccountWithSeed.ts",
     "mint_to_ata": "ts-node mintToAta.ts",
+    "create_mint_supply": "ts-node createMintSupply.ts",
     "create_account_with_seed": "ts-node createAccountWithSeed.ts"
   },
   "keywords": [],
