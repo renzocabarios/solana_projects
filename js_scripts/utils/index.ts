@@ -1,14 +1,12 @@
 import {
   BlockhashWithExpiryBlockHeight,
   Commitment,
-  ConfirmOptions,
-  Connection,
   Keypair,
   LAMPORTS_PER_SOL,
+  ParsedAccountData,
   PublicKey,
   RpcResponseAndContext,
   SignatureResult,
-  Signer,
   SystemProgram,
   Transaction,
   TransactionInstruction,
@@ -35,7 +33,22 @@ import {
   getMinimumBalanceForRentExemptMint,
 } from "@solana/spl-token";
 
-export function getATA(mint: PublicKey) {
+export async function getNumberDecimals(
+  mintAddress: PublicKey
+): Promise<number> {
+  const info = await CONNECTION.getParsedAccountInfo(
+    new PublicKey(mintAddress)
+  );
+  const result = (info.value?.data as ParsedAccountData).parsed.info
+    .decimals as number;
+  return result;
+}
+
+export function getATA(mint: PublicKey, owner: PublicKey) {
+  return getAssociatedTokenAddressSync(mint, owner);
+}
+
+export function getPayerATA(mint: PublicKey) {
   return getAssociatedTokenAddressSync(mint, getPayerKeypair().publicKey);
 }
 
@@ -113,16 +126,16 @@ export async function getAssociatedTokenAccount(
 }
 
 export async function getAssociatedTokenAccountOrInstruction(
+  owner: PublicKey,
   mint: PublicKey,
-  allowOwnerOffCurve = false,
   commitment?: Commitment
 ): Promise<Account | TransactionInstruction> {
   let err: unknown;
 
   const associatedToken = getAssociatedTokenAddressSync(
     mint,
-    getPayerKeypair().publicKey,
-    allowOwnerOffCurve,
+    owner,
+    false,
     TOKEN_PROGRAM_ID,
     ASSOCIATED_TOKEN_PROGRAM_ID
   );
@@ -136,8 +149,7 @@ export async function getAssociatedTokenAccountOrInstruction(
     );
 
     if (!account.mint.equals(mint)) throw new TokenInvalidMintError();
-    if (!account.owner.equals(getPayerKeypair().publicKey))
-      throw new TokenInvalidOwnerError();
+    if (!account.owner.equals(owner)) throw new TokenInvalidOwnerError();
   } catch (error: unknown) {
     err = error;
   }
@@ -150,7 +162,7 @@ export async function getAssociatedTokenAccountOrInstruction(
     ? createAssociatedTokenAccountInstruction(
         getPayerKeypair().publicKey,
         associatedToken,
-        getPayerKeypair().publicKey,
+        owner,
         mint,
         TOKEN_PROGRAM_ID,
         ASSOCIATED_TOKEN_PROGRAM_ID
