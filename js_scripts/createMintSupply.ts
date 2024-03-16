@@ -4,9 +4,8 @@ import {
   sendAndConfirmTransaction,
 } from "@solana/web3.js";
 import {
-  createMintTransaction,
   generateKeypair,
-  getATA,
+  getPayerATA,
   getEstimatedFee,
   getPayerKeypair,
   mintToInstruction,
@@ -20,7 +19,7 @@ const main = async () => {
 
   const mintId = new PublicKey(process.argv[2] ?? mintKeypair.publicKey);
 
-  const associatedToken = getATA(mintId);
+  const associatedToken = getPayerATA(mintId);
 
   const transaction = new Transaction().add(
     mintToInstruction(mintId, associatedToken, SUPPLY)
