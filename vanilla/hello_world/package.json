@@ -1,0 +1,20 @@
+{
+  "name": "hello_world",
+  "version": "1.0.0",
+  "description": "- `solana logs | grep \"<program-id> invoke\" -A -3` - `solana program deploy ./target/deploy/hello_world.so`",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@solana/web3.js": "^1.91.1",
+    "bs58": "^5.0.0",
+    "dotenv": "^16.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  }
+}
