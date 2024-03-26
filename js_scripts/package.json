@@ -24,6 +24,7 @@
     "umi_get_balance": "ts-node umi/get_balance.ts",
     "umi_create_account": "ts-node umi/create_account.ts",
     "umi_transfer_sol": "ts-node umi/transfer_sol.ts",
+    "umi_create_mint": "ts-node umi/create_mint.ts",
     "create_account_with_seed": "ts-node createAccountWithSeed.ts"
   },
   "keywords": [],
