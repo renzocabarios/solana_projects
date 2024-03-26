@@ -34,6 +34,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@metaplex-foundation/mpl-toolbox@^0.9.4":
+  version "0.9.4"
+  resolved "https://registry.npmjs.org/@metaplex-foundation/mpl-toolbox/-/mpl-toolbox-0.9.4.tgz"
+  integrity sha512-fd6JxfoLbj/MM8FG2x91KYVy1U6AjBQw4qjt7+Da3trzQaWnSaYHDcYRG/53xqfvZ9qofY1T2t53GXPlD87lnQ==
+
 "@metaplex-foundation/umi-bundle-defaults@^0.9.1":
   version "0.9.1"
   resolved "https://registry.npmjs.org/@metaplex-foundation/umi-bundle-defaults/-/umi-bundle-defaults-0.9.1.tgz"
@@ -146,7 +151,7 @@
   dependencies:
     buffer "^6.0.3"
 
-"@metaplex-foundation/umi@^0.9.1":
+"@metaplex-foundation/umi@^0.9.1", "@metaplex-foundation/umi@>= 0.8.2 < 1":
   version "0.9.1"
   resolved "https://registry.npmjs.org/@metaplex-foundation/umi/-/umi-0.9.1.tgz"
   integrity sha512-IhHoOvp4vfO/++YL+78+iVuLM53+FDwUOZDYgH6lx0jYXyQ27BeaieeR5i+q3A9dz4KxQo5Nzc5aCA1109QGCQ==
