@@ -8,6 +8,7 @@ import {
 } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { SOLANA } from "@/config";
+import Link from "next/link";
 require("@solana/wallet-adapter-react-ui/styles.css");
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +29,15 @@ export default function RootLayout({
         {rendered && (
           <ConnectionProvider endpoint={SOLANA.rpc}>
             <WalletProvider wallets={[]} autoConnect>
-              <WalletModalProvider>{children}</WalletModalProvider>
+              <WalletModalProvider>
+                <div className="flex">
+                  <div className="flex flex-col p-2 gap-2 min-h-screen bg-slate-900 w-[10vw]">
+                    <Link href={"/connect-wallet"}>Connect Wallet</Link>
+                    <Link href={"/umi/connect-wallet"}>UMI Connect Wallet</Link>
+                  </div>
+                  <div className="min-h-screen w-[90vw]">{children}</div>
+                </div>
+              </WalletModalProvider>
             </WalletProvider>
           </ConnectionProvider>
         )}
