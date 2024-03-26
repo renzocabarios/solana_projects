@@ -22,8 +22,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@metaplex-foundation/umi": "^0.9.1",
+    "@metaplex-foundation/umi-bundle-defaults": "^0.9.1",
     "@solana/spl-token": "^0.4.1",
-    "@solana/web3.js": "^1.78.4",
+    "@solana/web3.js": "^1.91.1",
     "@types/node": "^20.5.9",
     "bs58": "^5.0.0",
     "dotenv": "^16.4.5",
