@@ -18,6 +18,7 @@
     "stringToUintArray": "ts-node stringToUintArray.ts",
     "umi_create_instance": "ts-node umi/create_instance.ts",
     "umi_get_endpoint": "ts-node umi/get_endpoint.ts",
+    "umi_account_exists": "ts-node umi/account_exists.ts",
     "create_account_with_seed": "ts-node createAccountWithSeed.ts"
   },
   "keywords": [],
