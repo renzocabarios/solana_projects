@@ -6,7 +6,7 @@ import {
 } from "@solana/wallet-adapter-react-ui";
 import React, { useState } from "react";
 import useUmi from "../useUmi";
-import { generateSigner, keypairIdentity } from "@metaplex-foundation/umi";
+import { generateSigner } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
 import { createMint, mplToolbox } from "@metaplex-foundation/mpl-toolbox";
 import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";

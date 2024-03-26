@@ -35,6 +35,9 @@ export default function RootLayout({
                     <Link href={"/connect-wallet"}>Connect Wallet</Link>
                     <Link href={"/umi/connect-wallet"}>UMI Connect Wallet</Link>
                     <Link href={"/umi/create-mint"}>UMI Create Mint</Link>
+                    <Link href={"/umi/create-fungible-token"}>
+                      UMI Create Fungible Token
+                    </Link>
                   </div>
                   <div className="min-h-screen w-[90vw]">{children}</div>
                 </div>
