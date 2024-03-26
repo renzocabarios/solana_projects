@@ -34,6 +34,7 @@ export default function RootLayout({
                   <div className="flex flex-col p-2 gap-2 min-h-screen bg-slate-900 w-[10vw]">
                     <Link href={"/connect-wallet"}>Connect Wallet</Link>
                     <Link href={"/umi/connect-wallet"}>UMI Connect Wallet</Link>
+                    <Link href={"/umi/create-mint"}>UMI Create Mint</Link>
                   </div>
                   <div className="min-h-screen w-[90vw]">{children}</div>
                 </div>

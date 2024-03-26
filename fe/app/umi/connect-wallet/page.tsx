@@ -5,7 +5,7 @@ import {
   WalletDisconnectButton,
 } from "@solana/wallet-adapter-react-ui";
 import React from "react";
-import useUmi from "./useUmi";
+import useUmi from "../useUmi";
 
 function UmiConnectWallet() {
   const umi = useUmi();
