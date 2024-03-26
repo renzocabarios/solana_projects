@@ -27,6 +27,7 @@
     "umi_create_mint": "ts-node umi/create_mint.ts",
     "umi_create_token": "ts-node umi/create_token.ts",
     "umi_create_ata": "ts-node umi/create_ata.ts",
+    "umi_create_mint_with_ata": "ts-node umi/create_mint_with_ata.ts",
     "create_account_with_seed": "ts-node createAccountWithSeed.ts"
   },
   "keywords": [],
