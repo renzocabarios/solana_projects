@@ -39,7 +39,11 @@ export default function RootLayout({
                       UMI Create Fungible Token
                     </Link>{" "}
                     <Link href={"/umi/upload-irys"}>UMI Upload Irys</Link>
+                    <Link href={"/umi/upload-json-irys"}>
+                      UMI Upload Json Irys
+                    </Link>
                   </div>
+
                   <div className="min-h-screen w-[90vw]">{children}</div>
                 </div>
               </WalletModalProvider>
