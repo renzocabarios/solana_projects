@@ -37,7 +37,8 @@ export default function RootLayout({
                     <Link href={"/umi/create-mint"}>UMI Create Mint</Link>
                     <Link href={"/umi/create-fungible-token"}>
                       UMI Create Fungible Token
-                    </Link>
+                    </Link>{" "}
+                    <Link href={"/umi/upload-irys"}>UMI Upload Irys</Link>
                   </div>
                   <div className="min-h-screen w-[90vw]">{children}</div>
                 </div>
