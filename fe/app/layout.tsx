@@ -37,18 +37,19 @@ export default function RootLayout({
                     <Link href={"/umi/create-mint"}>UMI Create Mint</Link>
                     <Link href={"/umi/create-fungible-token"}>
                       UMI Create Fungible Token
-                    </Link>{" "}
+                    </Link>
                     <Link href={"/umi/upload-irys"}>UMI Upload Irys</Link>
                     <Link href={"/umi/upload-json-irys"}>
                       UMI Upload Json Irys
                     </Link>
-                    <Link href={"/umi/create-nft"}>UMI Create NFT</Link>{" "}
+                    <Link href={"/umi/create-nft"}>UMI Create NFT</Link>
                     <Link href={"/umi/create-candy-machine"}>
                       UMI Create Candy Machine
-                    </Link>{" "}
+                    </Link>
                     <Link href={"/umi/create-merkle-tree"}>
                       UMI Create Merkle Tree
                     </Link>{" "}
+                    <Link href={"/umi/create-cnft"}>UMI cNFT</Link>
                   </div>
 
                   <div className="min-h-screen w-[90vw]">{children}</div>
