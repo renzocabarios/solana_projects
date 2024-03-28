@@ -43,6 +43,9 @@ export default function RootLayout({
                       UMI Upload Json Irys
                     </Link>
                     <Link href={"/umi/create-nft"}>UMI Create NFT</Link>{" "}
+                    <Link href={"/umi/create-candy-machine"}>
+                      UMI Create Candy Machine
+                    </Link>{" "}
                   </div>
 
                   <div className="min-h-screen w-[90vw]">{children}</div>
