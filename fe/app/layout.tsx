@@ -46,6 +46,9 @@ export default function RootLayout({
                     <Link href={"/umi/create-candy-machine"}>
                       UMI Create Candy Machine
                     </Link>{" "}
+                    <Link href={"/umi/create-merkle-tree"}>
+                      UMI Create Merkle Tree
+                    </Link>{" "}
                   </div>
 
                   <div className="min-h-screen w-[90vw]">{children}</div>
