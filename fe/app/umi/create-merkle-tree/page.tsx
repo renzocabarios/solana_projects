@@ -38,7 +38,6 @@ function UMICreateNFT() {
 
   return (
     <div>
-      <WalletMultiButton />
       <InputField
         name="maxDepth"
         label="maxDepth"
