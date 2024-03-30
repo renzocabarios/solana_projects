@@ -7,7 +7,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { irysUploader } from "@metaplex-foundation/umi-uploader-irys";
 import { createGenericFileFromBrowserFile } from "@metaplex-foundation/umi";
 
-function UploadJsonIrys() {
+function UMIUploadJsonIrys() {
   const wallet = useWallet();
   const umi = useUmi();
 
@@ -85,4 +85,4 @@ function UploadJsonIrys() {
   );
 }
 
-export default UploadJsonIrys;
+export default UMIUploadJsonIrys;
