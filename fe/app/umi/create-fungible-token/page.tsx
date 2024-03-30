@@ -1,9 +1,5 @@
 "use client";
 
-import {
-  WalletMultiButton,
-  WalletDisconnectButton,
-} from "@solana/wallet-adapter-react-ui";
 import React, { useState } from "react";
 import useUmi from "../useUmi";
 import { percentAmount, generateSigner } from "@metaplex-foundation/umi";
@@ -43,9 +39,6 @@ function CreateFungibleToken() {
 
   return (
     <div>
-      <WalletMultiButton />
-      <WalletDisconnectButton />
-
       <div className="flex flex-col">
         <p>Name</p>
         <input
