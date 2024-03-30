@@ -4,17 +4,14 @@ import React, { useState } from "react";
 import useUmi from "../useUmi";
 import { generateSigner } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
-import { createMint, mplToolbox } from "@metaplex-foundation/mpl-toolbox";
-import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
+import { createMint } from "@metaplex-foundation/mpl-toolbox";
 import { useWallet } from "@solana/wallet-adapter-react";
 
 function UMICreateMint() {
   const [decimals, setdecimals] = useState(0);
-  const wallet = useWallet();
   const umi = useUmi();
 
   const onCreateMint = async () => {
-    umi.use(walletAdapterIdentity(wallet)).use(mplToolbox());
     const mint = generateSigner(umi);
     const tx = await createMint(umi, {
       mint,
