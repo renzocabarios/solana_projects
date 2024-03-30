@@ -1,5 +1,4 @@
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import Link from "next/link";
 
 interface InputFieldProps {
   onChange: (e: any) => void;
@@ -33,24 +32,9 @@ export function Button({ onClick, children }: ButtonProps) {
 
 export function AppBar() {
   return (
-    <div className="h-[10vh] p-2 flex items-center justify-between">
+    <div className="h-[10vh] p-5 flex items-center justify-between">
       <p className="text-2xl font-semibold">Solana Examples</p>
       <WalletMultiButton />
-    </div>
-  );
-}
-
-export function Sidenav() {
-  return (
-    <div className="flex flex-col p-2 gap-2 min-h-screen bg-slate-900 w-[10vw]">
-      <Link href={"/umi/create-mint"}>UMI Create Mint</Link>
-      <Link href={"/umi/create-fungible-token"}>UMI Create Fungible Token</Link>
-      <Link href={"/umi/upload-irys"}>UMI Upload Irys</Link>
-      <Link href={"/umi/upload-json-irys"}>UMI Upload Json Irys</Link>
-      <Link href={"/umi/create-nft"}>UMI Create NFT</Link>
-      <Link href={"/umi/create-candy-machine"}>UMI Create Candy Machine</Link>
-      <Link href={"/umi/create-merkle-tree"}>UMI Create Merkle Tree</Link>{" "}
-      <Link href={"/umi/create-cnft"}>UMI cNFT</Link>
     </div>
   );
 }

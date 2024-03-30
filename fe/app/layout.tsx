@@ -8,7 +8,8 @@ import {
 } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { SOLANA } from "@/config";
-import { AppBar, Sidenav } from "@/components";
+import { AppBar } from "@/components";
+import { Sidenav } from "@/components/sidenav";
 require("@solana/wallet-adapter-react-ui/styles.css");
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +35,7 @@ export default function RootLayout({
                   <Sidenav />
                   <div className="flex flex-col">
                     <AppBar />
-                    <div className="min-h-[90vh] w-[90vw]">{children}</div>
+                    <div className="min-h-[90vh] w-[90vw] p-5">{children}</div>
                   </div>
                 </div>
               </WalletModalProvider>
