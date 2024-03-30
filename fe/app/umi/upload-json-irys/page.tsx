@@ -28,7 +28,6 @@ function UMIUploadJsonIrys() {
   };
 
   const onUpload = async (e: any) => {
-    umi.use(walletAdapterIdentity(wallet)).use(irysUploader());
     const file = await createGenericFileFromBrowserFile(current);
     const [imageUri] = await umi.uploader.upload([file]);
     const response = await umi.uploader.uploadJson({
