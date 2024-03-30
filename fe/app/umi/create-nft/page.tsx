@@ -1,9 +1,5 @@
 "use client";
 
-import {
-  WalletMultiButton,
-  WalletDisconnectButton,
-} from "@solana/wallet-adapter-react-ui";
 import React, { useState } from "react";
 import useUmi from "../useUmi";
 import { percentAmount, generateSigner } from "@metaplex-foundation/umi";
@@ -74,8 +70,6 @@ function UMICreateNFT() {
 
   return (
     <div>
-      <WalletMultiButton />
-      <WalletDisconnectButton />
       <div className="flex flex-col col-span-2">
         <p className="text-xs">image</p>
         <input type="file" onChange={onFileChange} className="text-black" />
