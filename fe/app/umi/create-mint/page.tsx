@@ -5,7 +5,6 @@ import useUmi from "../useUmi";
 import { generateSigner } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
 import { createMint } from "@metaplex-foundation/mpl-toolbox";
-import { useWallet } from "@solana/wallet-adapter-react";
 
 function UMICreateMint() {
   const [decimals, setdecimals] = useState(0);
