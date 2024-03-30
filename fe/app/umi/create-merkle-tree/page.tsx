@@ -10,6 +10,7 @@ function UMICreateMerkleTree() {
   const [form, setform] = useState({
     maxDepth: 0,
     maxBufferSize: 0,
+    public: true,
   });
 
   const umi = useUmi();
@@ -21,6 +22,7 @@ function UMICreateMerkleTree() {
       merkleTree,
       maxDepth: Number(form.maxDepth),
       maxBufferSize: Number(form.maxBufferSize),
+      public: form.public,
     });
 
     const tx = await builder.sendAndConfirm(umi);
@@ -30,7 +32,13 @@ function UMICreateMerkleTree() {
   };
 
   const onInputChange = (e: any) => {
-    const { name, value } = e.target;
+    const { name, value, checked } = e.target;
+
+    if (name == "public") {
+      setform((state) => ({ ...state, public: checked }));
+      return;
+    }
+
     setform((state) => ({ ...state, [name]: value }));
   };
 
@@ -46,6 +54,12 @@ function UMICreateMerkleTree() {
         name="maxBufferSize"
         label="maxBufferSize"
         type="number"
+        onChange={onInputChange}
+      />
+      <InputField
+        name="public"
+        label="public"
+        type="checkbox"
         onChange={onInputChange}
       />
       <Button onClick={onCreateMint}>Create Merkle Tree</Button>
