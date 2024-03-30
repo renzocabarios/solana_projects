@@ -1,9 +1,5 @@
 "use client";
 
-import {
-  WalletMultiButton,
-  WalletDisconnectButton,
-} from "@solana/wallet-adapter-react-ui";
 import React, { useState } from "react";
 import useUmi from "../useUmi";
 import { generateSigner } from "@metaplex-foundation/umi";
@@ -42,9 +38,6 @@ function CreateMint() {
 
   return (
     <div>
-      <WalletMultiButton />
-      <WalletDisconnectButton />
-
       <div className="flex flex-col">
         <p>Decimals</p>
         <input type="number" onChange={onHandleChange} className="text-black" />
