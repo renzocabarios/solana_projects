@@ -4,9 +4,6 @@ import React, { useState } from "react";
 import useUmi from "../useUmi";
 import { percentAmount, generateSigner } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
-import { mplToolbox } from "@metaplex-foundation/mpl-toolbox";
-import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
-import { useWallet } from "@solana/wallet-adapter-react";
 import { createNft } from "@metaplex-foundation/mpl-token-metadata";
 import axios from "axios";
 
@@ -17,7 +14,6 @@ function UMICreateNFT() {
     symbol: "",
     sellerFeeBasisPoints: 0,
   });
-  const wallet = useWallet();
   const umi = useUmi();
   const [current, setcurrent] = useState<null | any>(null);
 
@@ -42,7 +38,6 @@ function UMICreateNFT() {
   };
 
   const onCreateMint = async () => {
-    umi.use(walletAdapterIdentity(wallet)).use(mplToolbox());
     const uri = await uploadOffChain();
     const mint = generateSigner(umi);
 
