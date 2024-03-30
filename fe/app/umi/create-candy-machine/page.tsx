@@ -4,18 +4,13 @@ import React, { useState } from "react";
 import useUmi from "../useUmi";
 import { percentAmount, generateSigner, some } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
-import { mplToolbox } from "@metaplex-foundation/mpl-toolbox";
-import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
 import { useWallet } from "@solana/wallet-adapter-react";
 import {
   TokenStandard,
   createNft,
 } from "@metaplex-foundation/mpl-token-metadata";
 import axios from "axios";
-import {
-  create,
-  mplCandyMachine,
-} from "@metaplex-foundation/mpl-candy-machine";
+import { create } from "@metaplex-foundation/mpl-candy-machine";
 
 function UMICreateCandyMachine() {
   const [form, setform] = useState({
@@ -48,10 +43,6 @@ function UMICreateCandyMachine() {
   };
 
   const onCreateMint = async () => {
-    umi
-      .use(walletAdapterIdentity(wallet))
-      .use(mplToolbox())
-      .use(mplCandyMachine());
     const uri = await uploadOffChain();
     const collectionMint = generateSigner(umi);
     const candyMachine = generateSigner(umi);
