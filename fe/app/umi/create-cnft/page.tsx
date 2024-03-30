@@ -1,6 +1,5 @@
 "use client";
 
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import React, { useState } from "react";
 import useUmi from "../useUmi";
 import { generateSigner, transactionBuilder } from "@metaplex-foundation/umi";
@@ -58,7 +57,6 @@ function UMICreateNFT() {
 
   return (
     <div>
-      <WalletMultiButton />
       <InputField
         name="maxDepth"
         label="maxDepth"
