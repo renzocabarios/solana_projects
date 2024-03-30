@@ -9,7 +9,7 @@ import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-ad
 import { useWallet } from "@solana/wallet-adapter-react";
 import { createFungible } from "@metaplex-foundation/mpl-token-metadata";
 
-function CreateFungibleToken() {
+function UMICreateFungibleToken() {
   const [form, setform] = useState({ name: "", sellerFeeBasisPoints: 0 });
   const wallet = useWallet();
   const umi = useUmi();
@@ -63,4 +63,4 @@ function CreateFungibleToken() {
   );
 }
 
-export default CreateFungibleToken;
+export default UMICreateFungibleToken;
