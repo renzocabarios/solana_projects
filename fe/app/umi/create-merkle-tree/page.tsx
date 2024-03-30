@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import useUmi from "../useUmi";
 import { generateSigner } from "@metaplex-foundation/umi";
@@ -7,7 +6,7 @@ import { base58 } from "@metaplex-foundation/umi/serializers";
 import { createTree } from "@metaplex-foundation/mpl-bubblegum";
 import { Button, InputField } from "@/components";
 
-function UMICreateNFT() {
+function UMICreateMerkleTree() {
   const [form, setform] = useState({
     maxDepth: 0,
     maxBufferSize: 0,
@@ -54,4 +53,4 @@ function UMICreateNFT() {
   );
 }
 
-export default UMICreateNFT;
+export default UMICreateMerkleTree;
