@@ -2,7 +2,6 @@
 
 import React from "react";
 import useUmi from "../useUmi";
-import { useWallet } from "@solana/wallet-adapter-react";
 import { createGenericFileFromBrowserFile } from "@metaplex-foundation/umi";
 
 function UMIUploadIrys() {
