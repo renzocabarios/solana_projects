@@ -4,19 +4,13 @@ import React, { useState } from "react";
 import useUmi from "../useUmi";
 import { percentAmount, generateSigner } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
-import { mplToolbox } from "@metaplex-foundation/mpl-toolbox";
-import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
-import { useWallet } from "@solana/wallet-adapter-react";
 import { createFungible } from "@metaplex-foundation/mpl-token-metadata";
 
 function UMICreateFungibleToken() {
   const [form, setform] = useState({ name: "", sellerFeeBasisPoints: 0 });
-  const wallet = useWallet();
   const umi = useUmi();
 
   const onCreateMint = async () => {
-    umi.use(walletAdapterIdentity(wallet)).use(mplToolbox());
-
     const mint = generateSigner(umi);
 
     const tx = await createFungible(umi, {
