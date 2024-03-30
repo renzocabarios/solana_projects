@@ -29,3 +29,12 @@ interface ButtonProps {
 export function Button({ onClick, children }: ButtonProps) {
   return <button onClick={onClick}>{children}</button>;
 }
+
+export function AppBar() {
+  return (
+    <div className="h-[10vh] p-2 flex items-center justify-between">
+      <p className="text-2xl font-semibold">Solana Examples</p>
+      <WalletMultiButton />
+    </div>
+  );
+}
