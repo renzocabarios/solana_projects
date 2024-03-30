@@ -1,8 +1,5 @@
 "use client";
-import {
-  WalletMultiButton,
-  WalletDisconnectButton,
-} from "@solana/wallet-adapter-react-ui";
+
 import React from "react";
 import useUmi from "../useUmi";
 import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
@@ -26,9 +23,6 @@ function UploadIrys() {
 
   return (
     <div>
-      <WalletMultiButton />
-      <WalletDisconnectButton />
-
       <div className="flex flex-col">
         <p>Image</p>
         <input type="file" onChange={onUpload} className="text-black" />
