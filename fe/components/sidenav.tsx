@@ -8,8 +8,8 @@ const UMI = [
   { title: "UMI Create NFT", href: "/umi/create-nft" },
   { title: "Create Candy Machine", href: "/umi/create-candy-machine" },
   { title: "Create Merkle Tree", href: "/umi/create-merkle-tree" },
+  { title: "Fetch Merkle Tree", href: "/umi/fetch-merkle-tree" },
   { title: "Create cNFT", href: "/umi/create-cnft" },
-  { title: "Create Mint", href: "/umi/create-mint" },
 ];
 
 export function Sidenav() {
