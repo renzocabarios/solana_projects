@@ -9,7 +9,7 @@ import { Button, InputField } from "@/components";
 import { none } from "@metaplex-foundation/umi";
 import { mintV1 } from "@metaplex-foundation/mpl-bubblegum";
 
-function UMICreateNFT() {
+function UMICreateCNFT() {
   const [form, setform] = useState({
     maxDepth: 3,
     maxBufferSize: 8,
@@ -74,4 +74,4 @@ function UMICreateNFT() {
   );
 }
 
-export default UMICreateNFT;
+export default UMICreateCNFT;
