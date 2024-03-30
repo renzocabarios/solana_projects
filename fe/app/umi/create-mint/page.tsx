@@ -8,7 +8,7 @@ import { createMint, mplToolbox } from "@metaplex-foundation/mpl-toolbox";
 import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
 import { useWallet } from "@solana/wallet-adapter-react";
 
-function CreateMint() {
+function UMICreateMint() {
   const [decimals, setdecimals] = useState(0);
   const wallet = useWallet();
   const umi = useUmi();
@@ -47,4 +47,4 @@ function CreateMint() {
   );
 }
 
-export default CreateMint;
+export default UMICreateMint;
