@@ -29,6 +29,7 @@
     "umi_create_ata": "ts-node umi/create_ata.ts",
     "umi_create_mint_with_ata": "ts-node umi/create_mint_with_ata.ts",
     "umi_create_merkle_tree": "ts-node umi/create_merkle_tree.ts",
+    "umi_fetch_merkle_tree": "ts-node umi/fetch_merkle_tree.ts",
     "get_all_token_accounts_by_mint": "ts-node ./getAllTokenAccountsByMint.ts",
     "create_account_with_seed": "ts-node createAccountWithSeed.ts"
   },
