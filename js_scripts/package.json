@@ -32,6 +32,8 @@
     "umi_fetch_merkle_tree": "ts-node umi/fetch_merkle_tree.ts",
     "umi_fetch_tree_config": "ts-node umi/fetch_tree_config.ts",
     "umi_mint_cnft": "ts-node umi/mint_cnft.ts",
+    "irys_upload_image": "ts-node irys/upload_image.ts",
+    "umi_upload_json": "ts-node umi/upload_json.ts",
     "get_all_token_accounts_by_mint": "ts-node ./getAllTokenAccountsByMint.ts",
     "create_account_with_seed": "ts-node createAccountWithSeed.ts"
   },
