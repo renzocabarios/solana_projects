@@ -39,15 +39,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@irys/query": "^0.0.5",
+    "@irys/sdk": "^0.1.21",
     "@metaplex-foundation/mpl-bubblegum": "^3.1.2",
     "@metaplex-foundation/mpl-toolbox": "^0.9.4",
     "@metaplex-foundation/umi": "^0.9.1",
     "@metaplex-foundation/umi-bundle-defaults": "^0.9.1",
+    "@metaplex-foundation/umi-uploader-irys": "^0.9.1",
     "@solana/spl-token": "^0.4.1",
     "@solana/web3.js": "^1.91.1",
     "@types/node": "^20.5.9",
+    "axios": "^1.6.8",
     "bs58": "^5.0.0",
     "dotenv": "^16.4.5",
+    "formidable": "^3.5.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }
