@@ -27,7 +27,7 @@ const main = async () => {
     merkleTree: merkleTree.publicKey,
     metadata: {
       name: "My Compressed NFT",
-      uri: "https://example.com/my-cnft.json",
+      uri: "https://arweave.net/MKcyRKqEzjlLs9-gM4eZAnrw3wkHjtmM1UohfbRqkYE",
       sellerFeeBasisPoints: 500, // 5%
       collection: none(),
       creators: [
@@ -49,6 +49,7 @@ const main = async () => {
 
   console.log(`Merkle Tree ${merkleTree.publicKey.toString()}`);
   console.log(`TX HASH ${signature}`);
+  console.log(`TX HASH ${[signature, _]}`);
 };
 
 main();
