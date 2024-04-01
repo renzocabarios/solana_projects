@@ -35,6 +35,7 @@
     "umi_fetch_leaf_asset": "ts-node umi/fetch_leaf_asset.ts",
     "irys_upload_image": "ts-node irys/upload_image.ts",
     "umi_upload_json": "ts-node umi/upload_json.ts",
+    "umi_create_master_nft": "ts-node umi/create_master_nft.ts",
     "get_all_token_accounts_by_mint": "ts-node ./getAllTokenAccountsByMint.ts",
     "create_account_with_seed": "ts-node createAccountWithSeed.ts"
   },
