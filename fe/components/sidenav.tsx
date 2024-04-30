@@ -14,9 +14,9 @@ const UMI = [
 
 export function Sidenav() {
   return (
-    <div className="flex flex-col p-2 gap-2 min-h-screen bg-slate-900 w-[10vw]">
+    <div className="flex flex-col p-2 gap-2 min-h-screen bg-secondary w-[10vw]">
       <p className="font-medium">UMI</p>
-      <hr className="border-t border-gray-600" />
+
       {UMI.map((link) => {
         return (
           <Link href={link.href} key={link.title}>
