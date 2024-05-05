@@ -1,18 +1,11 @@
 import { UMI_INSTANCE } from "../config";
-import { generateSigner, publicKey, some } from "@metaplex-foundation/umi";
+import { generateSigner, some } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
-import {
-  Key,
-  createCollectionV1,
-  createV1,
-  getAssetV1GpaBuilder,
-  updateAuthority,
-} from "@metaplex-foundation/mpl-core";
+import { createCollectionV1 } from "@metaplex-foundation/mpl-core";
 import { create } from "@metaplex-foundation/mpl-core-candy-machine";
 
-const candyMachine = generateSigner(UMI_INSTANCE);
 const main = async () => {
-  const asset = generateSigner(UMI_INSTANCE);
+  const candyMachine = generateSigner(UMI_INSTANCE);
   const collection = generateSigner(UMI_INSTANCE);
   const tx1 = await createCollectionV1(UMI_INSTANCE, {
     collection: collection,
