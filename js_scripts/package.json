@@ -48,6 +48,7 @@
     "@irys/query": "^0.0.5",
     "@irys/sdk": "^0.1.21",
     "@metaplex-foundation/mpl-bubblegum": "^3.1.2",
+    "@metaplex-foundation/mpl-core": "^0.4.6",
     "@metaplex-foundation/mpl-toolbox": "^0.9.4",
     "@metaplex-foundation/umi": "^0.9.1",
     "@metaplex-foundation/umi-bundle-defaults": "^0.9.1",
