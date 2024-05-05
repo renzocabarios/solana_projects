@@ -10,4 +10,5 @@ dotenv = "0.15.0"
 solana-client = "1.18.6"
 solana-program = "1.18.6"
 solana-sdk = "1.18.6"
+spl-token = "4.0.0"
 
