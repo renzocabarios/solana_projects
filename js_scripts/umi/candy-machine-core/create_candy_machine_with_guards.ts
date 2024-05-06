@@ -2,7 +2,10 @@ import { UMI_INSTANCE } from "../config";
 import { dateTime, generateSigner, some } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
 import { createCollectionV1 } from "@metaplex-foundation/mpl-core";
-import { create } from "@metaplex-foundation/mpl-core-candy-machine";
+import {
+  create,
+  fetchCandyMachine,
+} from "@metaplex-foundation/mpl-core-candy-machine";
 
 const main = async () => {
   const candyMachine = generateSigner(UMI_INSTANCE);
@@ -37,6 +40,9 @@ const main = async () => {
 
   const tx2Hash = base58.deserialize(tx2.signature);
   console.log(tx2Hash[0]);
+
+  const fetched = await fetchCandyMachine(UMI_INSTANCE, candyMachine.publicKey);
+  console.log(fetched);
 };
 
 main();
