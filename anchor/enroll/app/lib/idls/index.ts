@@ -1,3 +1,4 @@
+const program_id = "FDDbT6pAmifx3GffUhq67FZBEZp1ggYmhdiWwAoJRY5T";
 export type Enroll = {
   version: "0.1.0";
   name: "enroll";
