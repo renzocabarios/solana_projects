@@ -1,5 +1,5 @@
 import { UMI_INSTANCE } from "../config";
-import { dateTime, generateSigner, sol, some } from "@metaplex-foundation/umi";
+import { dateTime, generateSigner, some } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
 import { createCollectionV1 } from "@metaplex-foundation/mpl-core";
 import { create } from "@metaplex-foundation/mpl-core-candy-machine";
