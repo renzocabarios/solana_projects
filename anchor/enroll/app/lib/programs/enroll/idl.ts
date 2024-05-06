@@ -1,5 +1,6 @@
-const program_id = "FDDbT6pAmifx3GffUhq67FZBEZp1ggYmhdiWwAoJRY5T";
-export type Enroll = {
+export const ENROLL_PROGRAM_ID = "FDDbT6pAmifx3GffUhq67FZBEZp1ggYmhdiWwAoJRY5T";
+
+export type ENROLL_IDL = {
   version: "0.1.0";
   name: "enroll";
   instructions: [
@@ -20,7 +21,7 @@ export type Enroll = {
           name: "systemProgram";
           isMut: false;
           isSigner: false;
-        }
+        },
       ];
       args: [
         {
@@ -30,9 +31,9 @@ export type Enroll = {
         {
           name: "github";
           type: "string";
-        }
+        },
       ];
-    }
+    },
   ];
   accounts: [
     {
@@ -51,14 +52,20 @@ export type Enroll = {
           {
             name: "bump";
             type: "u8";
-          }
+          },
         ];
       };
-    }
+    },
   ];
+  metadata: {
+    version: "0.1.0";
+    name: "enroll";
+    spec: "qwd";
+  };
+  address: "FDDbT6pAmifx3GffUhq67FZBEZp1ggYmhdiWwAoJRY5T";
 };
 
-export const IDL: Enroll = {
+export const ENROLL_IDL: ENROLL_IDL = {
   version: "0.1.0",
   name: "enroll",
   instructions: [
@@ -115,4 +122,10 @@ export const IDL: Enroll = {
       },
     },
   ],
+  metadata: {
+    version: "0.1.0",
+    name: "enroll",
+    spec: "qwd",
+  },
+  address: "FDDbT6pAmifx3GffUhq67FZBEZp1ggYmhdiWwAoJRY5T",
 };
