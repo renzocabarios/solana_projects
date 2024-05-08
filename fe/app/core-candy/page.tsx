@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import useUmi from "@/hooks/useUmi";
+import { create } from "@metaplex-foundation/mpl-core-candy-machine";
 import { percentAmount, generateSigner, some } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -10,8 +11,7 @@ import {
   createNft,
 } from "@metaplex-foundation/mpl-token-metadata";
 import axios from "axios";
-import { create } from "@metaplex-foundation/mpl-candy-machine";
-
+import { createCollectionV1 } from "@metaplex-foundation/mpl-core";
 function UMICreateCandyMachine() {
   const [form, setform] = useState({
     name: "",
@@ -43,48 +43,32 @@ function UMICreateCandyMachine() {
   };
 
   const onCreateMint = async () => {
-    const uri = await uploadOffChain();
-    const collectionMint = generateSigner(umi);
+    const collectionSigner = generateSigner(umi);
+
+    await createCollectionV1(umi, {
+      collection: collectionSigner,
+      name: "My Collection",
+      uri: "https://example.com/my-collection.json",
+    }).sendAndConfirm(umi, { confirm: { commitment: "finalized" } });
     const candyMachine = generateSigner(umi);
 
-    const tx = await createNft(umi, {
-      mint: collectionMint,
-      name: form.name,
-      symbol: form.symbol,
-      uri,
-      sellerFeeBasisPoints: percentAmount(form.sellerFeeBasisPoints),
-      isCollection: true,
-    })
-      .add(
-        await create(umi, {
-          candyMachine,
-          collectionMint: collectionMint.publicKey,
-          collectionUpdateAuthority: umi.identity,
-          tokenStandard: TokenStandard.NonFungible,
-          sellerFeeBasisPoints: percentAmount(9.99, 2), // 9.99%
-          itemsAvailable: 5000,
-          creators: [
-            {
-              address: umi.identity.publicKey,
-              verified: true,
-              percentageShare: 100,
-            },
-          ],
-          configLineSettings: some({
-            prefixName: "",
-            nameLength: 32,
-            prefixUri: "",
-            uriLength: 200,
-            isSequential: false,
-          }),
-        })
-      )
-      .sendAndConfirm(umi);
+    const createIx = await (
+      await create(umi, {
+        candyMachine,
+        collection: collectionSigner.publicKey,
+        collectionUpdateAuthority: umi.identity,
+        itemsAvailable: 5000,
+        configLineSettings: some({
+          prefixName: "Example Asset #",
+          nameLength: 15,
+          prefixUri: "https://example.com/metadata/",
+          uriLength: 29,
+          isSequential: false,
+        }),
+      })
+    ).sendAndConfirm(umi);
 
-    const [signature, _] = base58.deserialize(tx.signature);
-    alert(`Created Collection Mint ${collectionMint.publicKey.toString()} `);
-    alert(`Created Candy Machine ${candyMachine.publicKey.toString()} `);
-    alert(`TX HASH ${signature}`);
+    console.log(createIx);
   };
 
   const onInputChange = (e: any) => {
