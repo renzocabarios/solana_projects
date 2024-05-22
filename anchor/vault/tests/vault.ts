@@ -1,69 +1,82 @@
 import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
 import { Vault } from "../target/types/vault";
+import { Keypair, SystemProgram } from "@solana/web3.js";
+import { airdrop, getVaultAddress } from "./helpers";
 import { assert } from "chai";
 
 describe("vault", () => {
-  const provider = anchor.AnchorProvider.local();
+  // Configure the client to use the local cluster.
+  const provider = anchor.AnchorProvider.local("http://127.0.0.1:8899");
   anchor.setProvider(provider);
 
   const program = anchor.workspace.Vault as Program<Vault>;
-  const connection = provider.connection;
+  const wallet_1: Keypair = Keypair.generate();
+  const amountDeposit: number = 10;
+  const amountWithdraw: number = 9;
 
-  const confirm = async (signature: string): Promise<string> => {
-    const block = await connection.getLatestBlockhash();
-    await connection.confirmTransaction({ signature, ...block });
-    return signature;
-  };
-
-  const amount = anchor.web3.LAMPORTS_PER_SOL * 10;
-
-  const vault = [Buffer.from("vault"), provider.publicKey.toBuffer()];
-  const [vaultKey, _bump] = anchor.web3.PublicKey.findProgramAddressSync(
-    vault,
-    program.programId
-  );
-
-  it("initialized vault account", async () => {
-    await program.methods
+  it("Is initialized!", async () => {
+    await airdrop(provider.connection, wallet_1.publicKey);
+    const [vaultKey, vaultBump] = getVaultAddress(
+      wallet_1.publicKey,
+      program.programId
+    );
+    const tx = await program.methods
       .initialize()
       .accounts({
-        payer: provider.publicKey,
-        depositAccount: vaultKey,
-        systemProgram: anchor.web3.SystemProgram.programId,
+        systemProgram: SystemProgram.programId,
+        vaultAuthority: wallet_1.publicKey,
+        vaultAccount: vaultKey,
       })
-      .rpc()
-      .then(confirm);
+      .signers([wallet_1])
+      .rpc();
 
-    assert.isNotNull(await program.account.depositAccount.fetch(vaultKey));
+    const vaultAccount = await program.account.vaultAccount.fetch(vaultKey);
+
+    assert.equal(
+      vaultAccount.vaultAuthority.toString(),
+      wallet_1.publicKey.toString()
+    );
   });
 
-  it("Is deposited!", async () => {
-    const tx = await program.methods
-      .deposit(new anchor.BN(amount))
-      .accounts({
-        payer: provider.publicKey,
-        depositAccount: vaultKey,
-        systemProgram: anchor.web3.SystemProgram.programId,
-      })
-      .rpc()
-      .then(confirm);
+  it("Is will deposit!", async () => {
+    const [vaultKey, vaultBump] = getVaultAddress(
+      wallet_1.publicKey,
+      program.programId
+    );
 
-    const account = await program.account.depositAccount.fetch(vaultKey);
-    assert.equal(Number(account.totalDeposits), amount);
+    await program.methods
+      .deposit(new anchor.BN(amountDeposit))
+      .accounts({
+        systemProgram: SystemProgram.programId,
+        vaultAuthority: wallet_1.publicKey,
+        vaultAccount: vaultKey,
+      })
+      .signers([wallet_1])
+      .rpc();
+
+    const vaultAccount = await program.account.vaultAccount.fetch(vaultKey);
+    assert.equal(Number(vaultAccount.amount), amountDeposit);
   });
 
-  it("Is withdrawed!", async () => {
-    const tx = await program.methods
-      .withdraw(new anchor.BN(amount))
-      .accounts({
-        user: provider.publicKey,
-        depositAccount: vaultKey,
-      })
-      .rpc()
-      .then(confirm);
+  it("Is will withdraw!", async () => {
+    const [vaultKey, vaultBump] = getVaultAddress(
+      wallet_1.publicKey,
+      program.programId
+    );
 
-    const account = await program.account.depositAccount.fetch(vaultKey);
-    assert.equal(Number(account.totalDeposits), amount - amount);
+    const currentAmount: number = amountDeposit - amountWithdraw;
+
+    await program.methods
+      .withdraw(new anchor.BN(amountWithdraw))
+      .accounts({
+        vaultAuthority: wallet_1.publicKey,
+        vaultAccount: vaultKey,
+      })
+      .signers([wallet_1])
+      .rpc();
+
+    const vaultAccount = await program.account.vaultAccount.fetch(vaultKey);
+    assert.equal(Number(vaultAccount.amount), currentAmount);
   });
 });
