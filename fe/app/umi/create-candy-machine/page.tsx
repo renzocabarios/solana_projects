@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import useUmi from "../useUmi";
+import useUmi from "@/hooks/useUmi";
 import { percentAmount, generateSigner, some } from "@metaplex-foundation/umi";
 import { base58 } from "@metaplex-foundation/umi/serializers";
 import { useWallet } from "@solana/wallet-adapter-react";

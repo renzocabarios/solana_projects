@@ -20,6 +20,9 @@ importers:
       '@metaplex-foundation/mpl-core':
         specifier: ^0.4.6
         version: 0.4.6(@metaplex-foundation/umi@0.9.1)(@noble/hashes@1.4.0)
+      '@metaplex-foundation/mpl-core-candy-machine':
+        specifier: ^0.2.0
+        version: 0.2.0(@metaplex-foundation/mpl-core@0.4.6(@metaplex-foundation/umi@0.9.1)(@noble/hashes@1.4.0))(@metaplex-foundation/umi@0.9.1)
       '@metaplex-foundation/mpl-toolbox':
         specifier: ^0.9.4
         version: 0.9.4(@metaplex-foundation/umi@0.9.1)
@@ -219,6 +222,12 @@ packages:
     resolution: {integrity: sha512-ETqr+JYacIfx0jb8RYq9GXFy53/7mrtWTrRf6mZYzu0x4L8lpTgSw7Zrb8EFITvBequTGTHe93bR/xjLrZF17Q==}
     peerDependencies:
       '@metaplex-foundation/umi': '>= 0.8.9 < 1'
+
+  '@metaplex-foundation/mpl-core-candy-machine@0.2.0':
+    resolution: {integrity: sha512-90AKombU6v3ul5yfexwYskMx9682X4FkgSTui3bqsz0WKlmEt3dxmlrpPGOyi+itEYqp8TjvwxykRXhU6P0uig==}
+    peerDependencies:
+      '@metaplex-foundation/mpl-core': '>= 0.4.5 < 1'
+      '@metaplex-foundation/umi': '>= 0.8.2 < 1'
 
   '@metaplex-foundation/mpl-core@0.4.6':
     resolution: {integrity: sha512-k+ArvdurQA0GwM1jQtp3DVqx1xfafwjni8dfryfMllkFI4fjlcUXt3A7dPyuox8ERznYe4ay7YwygVtyqy+sqA==}
@@ -2001,6 +2010,15 @@ snapshots:
   '@metaplex-foundation/mpl-bubblegum@3.1.2(@metaplex-foundation/umi@0.9.1)':
     dependencies:
       '@metaplex-foundation/digital-asset-standard-api': 1.0.3(@metaplex-foundation/umi@0.9.1)
+      '@metaplex-foundation/mpl-token-metadata': 3.0.0-alpha.27(@metaplex-foundation/umi@0.9.1)
+      '@metaplex-foundation/mpl-toolbox': 0.9.4(@metaplex-foundation/umi@0.9.1)
+      '@metaplex-foundation/umi': 0.9.1
+      '@noble/hashes': 1.4.0
+      merkletreejs: 0.3.11
+
+  '@metaplex-foundation/mpl-core-candy-machine@0.2.0(@metaplex-foundation/mpl-core@0.4.6(@metaplex-foundation/umi@0.9.1)(@noble/hashes@1.4.0))(@metaplex-foundation/umi@0.9.1)':
+    dependencies:
+      '@metaplex-foundation/mpl-core': 0.4.6(@metaplex-foundation/umi@0.9.1)(@noble/hashes@1.4.0)
       '@metaplex-foundation/mpl-token-metadata': 3.0.0-alpha.27(@metaplex-foundation/umi@0.9.1)
       '@metaplex-foundation/mpl-toolbox': 0.9.4(@metaplex-foundation/umi@0.9.1)
       '@metaplex-foundation/umi': 0.9.1

@@ -1,6 +1,7 @@
 import { SOLANA } from "@/config";
 import { mplBubblegum } from "@metaplex-foundation/mpl-bubblegum";
-import { mplCandyMachine } from "@metaplex-foundation/mpl-candy-machine";
+import { mplCandyMachine } from "@metaplex-foundation/mpl-core-candy-machine";
+import { mplCore } from "@metaplex-foundation/mpl-core";
 import { mplToolbox } from "@metaplex-foundation/mpl-toolbox";
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
 import { walletAdapterIdentity } from "@metaplex-foundation/umi-signer-wallet-adapters";
@@ -14,9 +15,9 @@ function useUmi() {
     .use(walletAdapterIdentity(wallet))
     .use(irysUploader())
     .use(mplToolbox())
-    .use(mplCandyMachine())
-    .use(mplBubblegum());
-
+    .use(mplBubblegum())
+    .use(mplCore())
+    .use(mplCandyMachine());
   return umi;
 }
 
