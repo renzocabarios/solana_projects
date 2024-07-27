@@ -1,0 +1,11 @@
+[package]
+name = "wba"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+borsh = "1.5.1"
+bs58 = "0.5.1"
+solana-client = "2.0.3"
+solana-sdk = "2.0.3"
+solana-idlgen = { git = "https://github.com/deanmlittle/solana-idlgen.git" }
