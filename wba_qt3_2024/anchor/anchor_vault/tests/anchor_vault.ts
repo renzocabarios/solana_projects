@@ -3,7 +3,6 @@ import { BN, Program } from "@coral-xyz/anchor";
 import { AnchorVault } from "../target/types/anchor_vault";
 
 describe("anchor_vault", () => {
-  // Configure the client to use the local cluster.
   anchor.setProvider(anchor.AnchorProvider.local());
 
   const program = anchor.workspace.AnchorVault as Program<AnchorVault>;
