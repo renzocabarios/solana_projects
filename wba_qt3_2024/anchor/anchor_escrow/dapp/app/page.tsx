@@ -219,7 +219,9 @@ export default function Home() {
 
               <div className="min-w-[400px] flex flex-col gap-4 p-4 border border-slate-500 rounded-xl">
                 <div className="flex flex-col">
-                  <p className="text-xs text-slate-600 ">Don't have a token?</p>
+                  <p className="text-xs text-slate-600 ">
+                    {"Don't"} have a token?
+                  </p>
                   <p className="text-xl font-semibold">Create your own token</p>
                 </div>
 
