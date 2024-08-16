@@ -58,7 +58,6 @@ impl<'info> Make<'info> {
             receive,
             bump: bumps.escrow,
         });
-
         Ok(())
     }
 
@@ -67,11 +66,11 @@ impl<'info> Make<'info> {
             from: self.maker_ata_a.to_account_info(),
             mint: self.mint_a.to_account_info(),
             to: self.vault.to_account_info(),
-            authority: self.escrow.to_account_info(),
+            authority: self.maker.to_account_info(),
         };
 
-        let cpi_context = CpiContext::new(self.token_program.to_account_info(), transfer_accounts);
+        let cpi_ctx = CpiContext::new(self.token_program.to_account_info(), transfer_accounts);
 
-        transfer_checked(cpi_context, deposit, self.mint_a.decimals)
+        transfer_checked(cpi_ctx, deposit, self.mint_a.decimals)
     }
 }
