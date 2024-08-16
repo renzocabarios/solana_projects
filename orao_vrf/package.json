@@ -1,0 +1,21 @@
+{
+  "name": "orao_vrf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.30.1",
+    "@orao-network/solana-vrf": "^0.4.0",
+    "@solana/web3.js": "^1.95.2"
+  }
+}
