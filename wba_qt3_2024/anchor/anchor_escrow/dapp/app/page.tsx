@@ -155,7 +155,7 @@ export default function Home() {
                       <FormItem>
                         <FormLabel>Deposit Mint Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="shadcn" {...field} />
+                          <Input placeholder="E2Rb...." {...field} />
                         </FormControl>
 
                         <FormMessage />
@@ -169,7 +169,7 @@ export default function Home() {
                       <FormItem>
                         <FormLabel>Deposit Amount</FormLabel>
                         <FormControl>
-                          <Input placeholder="shadcn" {...field} />
+                          <Input placeholder="E2Rb...." {...field} />
                         </FormControl>
 
                         <FormMessage />
@@ -184,7 +184,7 @@ export default function Home() {
                       <FormItem>
                         <FormLabel>Receive Mint Address</FormLabel>
                         <FormControl>
-                          <Input placeholder="shadcn" {...field} />
+                          <Input placeholder="E2Rb...." {...field} />
                         </FormControl>
 
                         <FormMessage />
@@ -198,7 +198,7 @@ export default function Home() {
                       <FormItem>
                         <FormLabel>Receive Amount</FormLabel>
                         <FormControl>
-                          <Input placeholder="shadcn" {...field} />
+                          <Input placeholder="E2Rb...." {...field} />
                         </FormControl>
 
                         <FormMessage />
@@ -231,7 +231,7 @@ export default function Home() {
                       <FormItem>
                         <FormLabel>Amount to mint</FormLabel>
                         <FormControl>
-                          <Input placeholder="shadcn" {...field} />
+                          <Input placeholder="E2Rb...." {...field} />
                         </FormControl>
 
                         <FormMessage />
@@ -245,7 +245,7 @@ export default function Home() {
                       <FormItem>
                         <FormLabel>Token Decimals</FormLabel>
                         <FormControl>
-                          <Input placeholder="shadcn" {...field} />
+                          <Input placeholder="E2Rb...." {...field} />
                         </FormControl>
 
                         <FormMessage />
