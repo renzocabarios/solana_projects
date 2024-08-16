@@ -38,6 +38,7 @@ describe("escrow_program", () => {
     );
     return signature;
   };
+
   const confirm = async (signature: string): Promise<string> => {
     const block = await connection.getLatestBlockhash();
     await connection.confirmTransaction({
@@ -46,6 +47,7 @@ describe("escrow_program", () => {
     });
     return signature;
   };
+  
   const seed = new BN(randomBytes(8));
   const [makerAtaA, makerAtaB, takerAtaA, takerAtaB] = [maker, taker]
     .map((a) =>
