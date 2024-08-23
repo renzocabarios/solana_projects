@@ -10,7 +10,6 @@ import {
   TransactionMessage,
   VersionedTransaction,
 } from "@solana/web3.js";
-import { RandomProgram } from "./idl";
 import { TOKEN_PROGRAM_ID } from "@coral-xyz/anchor/dist/cjs/utils/token";
 import { SYSTEM_PROGRAM_ID } from "@coral-xyz/anchor/dist/cjs/native/system";
 
@@ -34,6 +33,8 @@ const PAYER_KEYPAIR = Keypair.fromSecretKey(
 
   const SB_IDL = await Program.fetchIdl(SB_PROGRAM_ID, PROVIDER);
   const SB_PROGRAM = new Program(SB_IDL!, PROVIDER);
+
+  console.log(SB_PROGRAM.programId);
 
   const RNG_KEYPAIR = Keypair.generate();
 
