@@ -9,4 +9,7 @@ describe("anchor_vault", () => {
   const connection = provider.connection;
   const program = anchor.workspace.AnchorVault as Program<AnchorVault>;
 
+  it("test", async () => {
+
+  })
 });
