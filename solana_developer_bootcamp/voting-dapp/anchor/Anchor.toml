@@ -8,12 +8,15 @@ skip-lint = false
 [programs.localnet]
 votingdapp = "AsjZ3kWAUSQRNt2pZVeJkywhZ6gpLpHZmJjduPmKZDZZ"
 
+[programs.devnet]
+votingdapp = "8DvMFoR42sSE1iP2ScjupJUEfPY6wh7Rhjfw4q2vJ8QU"
+
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
-wallet = "~/.config/solana/id.json"
+cluster = "Devnet"
+wallet = "/home/renzo/.config/solana/id.json"
 
 [scripts]
 test = "../node_modules/.bin/jest --preset ts-jest"
