@@ -1,5 +1,7 @@
 use anchor_lang::prelude::*;
 
+use instructions::*;
+
 mod instructions;
 mod state;
 
@@ -9,7 +11,7 @@ declare_id!("Cq2gSzQBh9rFQqAhjXA2tUBx6vwQpsZdakoGRX2zNq8P");
 pub mod lending_program {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
+    pub fn init_bank(ctx: Context<Initialize>) -> Result<()> {
         msg!("Greetings from: {:?}", ctx.program_id);
         Ok(())
     }
