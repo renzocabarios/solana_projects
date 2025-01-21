@@ -12,6 +12,8 @@ const IDL = require("../target/idl/lending_program.json");
 
 export async function startEnv() {
   const user = Keypair.generate();
+  const admin = Keypair.generate();
+  const usdc = Keypair.generate();
 
   const context = await startAnchor(
     ".",
@@ -26,21 +28,42 @@ export async function startEnv() {
           executable: false,
         },
       },
+      {
+        address: admin.publicKey,
+        info: {
+          lamports: 10_000_000_000,
+          data: Buffer.alloc(0),
+          owner: SYSTEM_PROGRAM_ID,
+          executable: false,
+        },
+      },
     ]
   );
 
   const client = context.banksClient;
 
-  const provider = new BankrunProvider(context);
-  provider.wallet = new NodeWallet(user);
-  const program = new Program<LendingProgram>(IDL, provider);
+  const userProvider = new BankrunProvider(context);
+  userProvider.wallet = new NodeWallet(user);
+  const userProgram = new Program<LendingProgram>(IDL, userProvider);
+
+  const adminProvider = new BankrunProvider(context);
+  adminProvider.wallet = new NodeWallet(admin);
+  const adminProgram = new Program<LendingProgram>(IDL, adminProvider);
+
+  await createMint(client, admin, admin.publicKey, null, 6, usdc);
 
   return {
     client,
+    usdc,
     user: {
-      provider,
-      program,
+      provider: userProvider,
+      program: userProgram,
       account: user,
+    },
+    admin: {
+      provider: adminProvider,
+      program: adminProgram,
+      account: admin,
     },
   };
 }
