@@ -27,6 +27,15 @@ export function getTreasuryAccountPda(mint: PublicKey, program: PublicKey) {
     program
   )[0];
 }
+export function getAssociatedTokenAccountPda(
+  owner: PublicKey,
+  mint: PublicKey
+) {
+  return PublicKey.findProgramAddressSync(
+    [owner.toBuffer(), TOKEN_PROGRAM_ID.toBuffer(), mint.toBuffer()],
+    ASSOCIATED_TOKEN_PROGRAM_ID
+  )[0];
+}
 
 export async function createMint(
   banksClient: BanksClient,
