@@ -7,6 +7,8 @@ import {
   Transaction,
 } from "@solana/web3.js";
 import {
+  ASSOCIATED_TOKEN_PROGRAM_ID,
+  createAssociatedTokenAccountIdempotentInstruction,
   createInitializeMint2Instruction,
   createMintToInstruction,
   MINT_SIZE,
@@ -101,6 +103,34 @@ export async function mintTo(
       amount,
       multiSigners,
       programId
+    )
+  );
+  [tx.recentBlockhash] = (await banksClient.getLatestBlockhash())!;
+  tx.sign(payer, ...signers);
+
+  return await banksClient.processTransaction(tx);
+}
+
+export async function createATA(
+  banksClient: BanksClient,
+  payer: Signer,
+  destination: PublicKey,
+  owner: PublicKey,
+  mint: PublicKey,
+  authority: Signer | PublicKey,
+  multiSigners: Signer[] = [],
+  programId = TOKEN_PROGRAM_ID
+): Promise<BanksTransactionMeta> {
+  const [authorityPublicKey, signers] = getSigners(authority, multiSigners);
+
+  const tx = new Transaction().add(
+    createAssociatedTokenAccountIdempotentInstruction(
+      payer.publicKey,
+      destination,
+      owner,
+      mint,
+      programId,
+      ASSOCIATED_TOKEN_PROGRAM_ID
     )
   );
   [tx.recentBlockhash] = (await banksClient.getLatestBlockhash())!;
